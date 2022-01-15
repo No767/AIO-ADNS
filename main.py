@@ -1,4 +1,6 @@
-import dns, socket, dns.message, dns.rrset, dns.resolver
+import dns, dns.message, dns.query
+import socket
+import sqlite3
 
 serverInfo = {
     'ip': '127.0.0.1',
@@ -8,7 +10,36 @@ backupServerInfo = {
     'google': '8.8.8.8'
 }
 
+def initdb():
+    conn = sqlite3.connect('dns.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS domains (
+        domain text PRIMARY KEY,
+        answer text
+    )''')
+    conn.commit()
+    conn.close()
+
+def getAnswer(domain):
+    try:
+        conn = sqlite3.connect('dns.db')
+        c = conn.cursor()
+        c.execute("SELECT answer FROM domains WHERE domain = ?", (domain,))
+        answer = c.fetchone()[0]
+        conn.close()
+    except:
+        answer = None
+    return answer
+
+def addAnswer(domain, answer):
+    conn = sqlite3.connect('dns.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO domains VALUES (?, ?)", (domain, answer))
+    conn.commit()
+    conn.close()
+
 if __name__ == '__main__':
+    initdb()
     # Create a socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     # Bind the socket to the port
@@ -27,8 +58,15 @@ if __name__ == '__main__':
             response = dns.message.make_response(queryData)
             # Add a response to the response
             try:
-                forwardedResponse = dns.query.udp(queryData, backupServerInfo['google'], serverInfo['port'])
-                response.answer = forwardedResponse.answer
+                answer = getAnswer(queryData.question[0].to_text())
+                print(f'[+] Found answer in database: {answer}')
+                if answer != None:
+                    response.answer = dns.message.from_text(answer).answer
+                else:
+                    forwardedResponse = dns.query.udp(queryData, backupServerInfo['google'], serverInfo['port'])
+                    print(f'[+] Forwarded query to {backupServerInfo["google"]}')
+                    response.answer = forwardedResponse.answer
+                    addAnswer(queryData.question[0].to_text(), str(response))
             except Exception as e:
                 print(e)
             # Send the response to the client
