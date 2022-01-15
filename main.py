@@ -5,8 +5,7 @@ serverInfo = {
     'port': 53
 }
 backupServerInfo = {
-    'google': '8.8.8.8',
-    'home': '192.168.0.128'
+    'google': '8.8.8.8'
 }
 
 if __name__ == '__main__':
@@ -18,11 +17,6 @@ if __name__ == '__main__':
     except:
         print(f'Error: Port {serverInfo["port"]} is already in use.')
     print('[+] DNS Server')
-    r = dns.resolver.Resolver(configure=False)
-    r.use_search_by_default = True
-    for key in backupServerInfo:
-        r.nameservers.append(backupServerInfo[key])
-    print(f'[+] DNS Resolver: {r.nameservers}')
     try:
         while True:
             # Receive data from the client
@@ -33,10 +27,10 @@ if __name__ == '__main__':
             response = dns.message.make_response(queryData)
             # Add a response to the response
             try:
-                # TODO
-                pass
-            except:
-                print('[-] Error: No answer found')
+                forwardedResponse = dns.query.udp(queryData, backupServerInfo['google'], serverInfo['port'])
+                response.answer = forwardedResponse.answer
+            except Exception as e:
+                print(e)
             # Send the response to the client
             s.sendto(response.to_wire(), addr)
     except KeyboardInterrupt:
