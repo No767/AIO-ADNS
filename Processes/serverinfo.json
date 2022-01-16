@@ -1,0 +1,16 @@
+{
+    "Dnsserver": {
+        "ip": "127.0.0.1",
+        "port": 53,
+        "Backupservers": {
+            "Google": {
+                "ip": "8.8.8.8",
+                "port": 53
+            }
+        }
+    },
+    "Webserver": {
+        "ip": "127.0.0.1",
+        "port": 80
+    }
+}

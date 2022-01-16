@@ -1,6 +1,6 @@
 import sqlite3
 import dns
-import Processes.ServerInfo as si
+import Processes.Serverinfo as si
 
 def initdb():
     conn = sqlite3.connect('dns.db')
@@ -24,8 +24,8 @@ def getLocalAnswer(queryData):
     return dns.message.from_text(answer).answer
 
 def getRemoteAnswer(queryData):
-    forwardedResponse = dns.query.udp(queryData, backupServerInfo['google'], serverInfo['port'])
-    print(f'[+] Forwarded query to {si.backupServerInfo["google"]}')
+    forwardedResponse = dns.query.udp(queryData, info['google'], info['port'])
+    print(f'[+] Forwarded query to {si.info["Dnsserver"]["Backupservers"]["Google"]}')
     db.addAnswer(queryData.question[0].to_text(), str(forwardedResponse))
     return forwardedResponse.answer
 

@@ -1,6 +1,6 @@
 import flask
 import logging
-from Processes import ServerInfo
+from Processes import Serverinfo
 def run():
     # set up logging
     logging.basicConfig(filename = 'Logs/Webserver.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -13,4 +13,4 @@ def run():
     def hello():
         return 'A simple DNS server'
 
-    app.run(host=ServerInfo.serverInfo['webServer']['ip'], port=ServerInfo.serverInfo['webServer']['port'])
+    app.run(host=Serverinfo.info['Webserver']['ip'], port=Serverinfo.info['Webserver']['port'])

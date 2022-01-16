@@ -2,8 +2,8 @@ import dns, dns.message, dns.query
 import socket
 import sqlite3
 import logging
-import Processes.Database as db
-import Processes.ServerInfo as si
+from Processes import Database as db
+from Processes import Serverinfo as si
 def run():
     # Set up logging
     logging.basicConfig(filename = 'Logs/DNSServer.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -12,9 +12,9 @@ def run():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     # Bind the socket to the port
     try:
-        s.bind((si.serverInfo['dnsServer']['ip'], si.serverInfo['dnsServer']['port']))
+        s.bind((si.info['Dnsserver']['ip'], si.info['Dnsserver']['port']))
     except:
-        logging.error(f"Port {si.serverInfo['dnsServer']['port']} is already in use.")
+        logging.error(f"Port {si.info['Dnsserver']['port']} is already in use.")
     while True:
         # Receive data from the client
         data, addr = s.recvfrom(512)
