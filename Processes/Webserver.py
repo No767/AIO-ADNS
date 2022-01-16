@@ -1,8 +1,13 @@
 import flask
+import logging
 from Processes import ServerInfo
 def run():
+    # set up logging
+    logging.basicConfig(filename = 'Logs/Webserver.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.debug('[+] Starting Web server')
+
     app = flask.Flask(__name__)
-    print('[+] Webserver')
+    print('[+] Web server')
 
     @app.route('/')
     def hello():
