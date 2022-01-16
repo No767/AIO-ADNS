@@ -5,18 +5,22 @@
         "Backupservers": {
             "Google": {
                 "ip": "8.8.8.8",
+                "secondaryip": "8.8.4.4",
                 "port": 53
             },
             "Cloudflare": {
                 "ip": "1.1.1.1",
+                "secondaryip": "1.0.0.1",
                 "port": 53
             },
             "OpenDNS": {
                 "ip": "208.67.222.222",
+                "secondaryip": "208.67.220.220",
                 "port": 53
             }, 
             "Quad9": {
                 "ip": "9.9.9.9",
+                "secondaryip": "149.122.122.122",
                 "port": 53
             }
         }
