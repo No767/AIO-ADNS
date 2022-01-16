@@ -1,1 +1,9 @@
+nslookup cnn.com 127.0.0.1
 nslookup google.com 127.0.0.1
+nslookup bing.com 127.0.0.1
+nslookup reddit.com 127.0.0.1
+nslookup amazon.com 127.0.0.1
+nslookup acer.com 127.0.0.1
+nslookup instagram.com 127.0.0.1
+nslookup facebook.com 127.0.0.1
+nslookup lenovo.com 127.0.0.1

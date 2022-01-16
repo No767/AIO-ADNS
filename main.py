@@ -20,16 +20,36 @@ def initdb():
     conn.commit()
     conn.close()
 
-def getAnswer(domain):
+def getLocalAnswer(queryData):
     try:
         conn = sqlite3.connect('dns.db')
         c = conn.cursor()
-        c.execute("SELECT answer FROM domains WHERE domain = ?", (domain,))
+        c.execute("SELECT answer FROM domains WHERE domain = ?", (queryData.question[0].to_text(),))
         answer = c.fetchone()[0]
         conn.close()
     except:
-        answer = None
-    return answer
+        return None
+    return dns.message.from_text(answer).answer
+
+def getRemoteAnswer(queryData):
+    forwardedResponse = dns.query.udp(queryData, backupServerInfo['google'], serverInfo['port'])
+    print(f'[+] Forwarded query to {backupServerInfo["google"]}')
+    addAnswer(queryData.question[0].to_text(), str(forwardedResponse))
+    return forwardedResponse.answer
+
+def getAnswer(queryData):
+    localAnswer = getLocalAnswer(queryData)
+    if localAnswer is not None:
+        print(f'[+] Found answer in local database')
+        return localAnswer
+    else:
+        remoteAnswer = getRemoteAnswer(queryData)
+        if remoteAnswer is not None:
+            print(f'[+] Found answer in remote nameserver')
+            return remoteAnswer
+        else:
+            print(f'[-] No answer found')
+            return None
 
 def addAnswer(domain, answer):
     conn = sqlite3.connect('dns.db')
@@ -57,18 +77,7 @@ if __name__ == '__main__':
             # Create a response
             response = dns.message.make_response(queryData)
             # Add a response to the response
-            try:
-                answer = getAnswer(queryData.question[0].to_text())
-                print(f'[+] Found answer in database: {answer}')
-                if answer != None:
-                    response.answer = dns.message.from_text(answer).answer
-                else:
-                    forwardedResponse = dns.query.udp(queryData, backupServerInfo['google'], serverInfo['port'])
-                    print(f'[+] Forwarded query to {backupServerInfo["google"]}')
-                    response.answer = forwardedResponse.answer
-                    addAnswer(queryData.question[0].to_text(), str(response))
-            except Exception as e:
-                print(e)
+            response.answer = getAnswer(queryData)
             # Send the response to the client
             s.sendto(response.to_wire(), addr)
     except KeyboardInterrupt:
