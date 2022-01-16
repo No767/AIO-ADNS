@@ -1,6 +1,6 @@
-import Processes.Dnsserver
 import multiprocessing
-from Processes.Database import initdb
+from Processes import Database, Webserver, Dnsserver
 if __name__ == '__main__':
-    initdb()
-    multiprocessing.Process(target=Processes.Dnsserver.run()).start()
+    Database.initdb()
+    webServer = multiprocessing.Process(target=Webserver.run).start()
+    dnsServer = multiprocessing.Process(target=Dnsserver.run).start()

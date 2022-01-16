@@ -1,3 +1,7 @@
 /.vscode
 /Pipfile.lock
 dns.db
+Processes/__pycache__/Database.cpython-310.pyc
+Processes/__pycache__/Dnsserver.cpython-310.pyc
+Processes/__pycache__/ServerInfo.cpython-310.pyc
+Processes/__pycache__/Webserver.cpython-310.pyc

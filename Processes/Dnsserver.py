@@ -8,9 +8,9 @@ def run():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     # Bind the socket to the port
     try:
-        s.bind((si.serverInfo['ip'], si.serverInfo['port']))
+        s.bind((si.serverInfo['dnsServer']['ip'], si.serverInfo['dnsServer']['port']))
     except:
-        print(f'Error: Port {si.serverInfo["port"]} is already in use.')
+        print(f"Error: Port {si.serverInfo['dnsServer']['port']} is already in use.")
     print('[+] DNS Server')
     while True:
         # Receive data from the client
