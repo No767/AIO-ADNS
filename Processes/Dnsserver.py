@@ -8,6 +8,7 @@ def run():
     # Set up logging
     logging.basicConfig(filename = 'Logs/DNSServer.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
     logging.debug('[+] Starting DNS server')
+    print('[+] Starting DNS server')
     # Create a socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     # Bind the socket to the port

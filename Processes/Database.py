@@ -24,9 +24,9 @@ def getLocalAnswer(queryData):
     return dns.message.from_text(answer).answer
 
 def getRemoteAnswer(queryData):
-    forwardedResponse = dns.query.udp(queryData, info['google'], info['port'])
-    print(f'[+] Forwarded query to {si.info["Dnsserver"]["Backupservers"]["Google"]}')
-    db.addAnswer(queryData.question[0].to_text(), str(forwardedResponse))
+    forwardedResponse = dns.query.udp(queryData, si.info['Dnsserver']['Backupservers']['Google']['ip'], si.info['Dnsserver']['Backupservers']['Google']['port'])
+    print(f'[+] Forwarded query to {si.info["Dnsserver"]["Backupservers"]["Google"]["ip"]}:{si.info["Dnsserver"]["Backupservers"]["Google"]["port"]}')
+    addAnswer(queryData.question[0].to_text(), str(forwardedResponse))
     return forwardedResponse.answer
 
 def getAnswer(queryData):
