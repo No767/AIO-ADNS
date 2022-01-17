@@ -1,6 +1,9 @@
 import sqlite3
 import dns
+import logging
 import Processes.Serverinfo as si
+
+logging.basicConfig(filename = 'Logs/Dnsserver.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def initdb():
     conn = sqlite3.connect('dns.db')
@@ -18,6 +21,7 @@ def getLocalAnswer(queryData):
         c = conn.cursor()
         c.execute("SELECT answer FROM domains WHERE domain = ?", (queryData.question[0].to_text(),))
         answer = c.fetchone()[0]
+        logging.debug(f'[+] Found answer in local database')
         conn.close()
     except:
         return None
@@ -34,23 +38,22 @@ def getRemoteAnswer(queryData):
             useServer['port'] = si.info['Dnsserver']['Backupservers'][backupServerName]['port']
             break
     forwardedResponse = dns.query.udp(queryData, useServer['ip'], useServer['port'])
-    print(f"[+] Forwarded query to {useServer['ip']}:{useServer['port']}")
+    logging.debug(f"[+] Forwarded query to {useServer['ip']}:{useServer['port']}")
     addAnswer(queryData.question[0].to_text(), str(forwardedResponse))
+    logging.debug(f'[+] Found answer in remote nameserver and added to local database')
     return forwardedResponse.answer
 
 def getAnswer(queryData):
     localAnswer = getLocalAnswer(queryData)
-    if localAnswer is not None:
-        print(f'[+] Found answer in local database')
-        return localAnswer
-    else:
+    if localAnswer is None:
         remoteAnswer = getRemoteAnswer(queryData)
         if remoteAnswer is not None:
-            print(f'[+] Found answer in remote nameserver')
             return remoteAnswer
         else:
-            print(f'[-] No answer found')
+            logging.debug(f'[-] No answer found')
             return None
+    else:
+        return localAnswer
 
 def addAnswer(domain, answer):
     conn = sqlite3.connect('dns.db')
