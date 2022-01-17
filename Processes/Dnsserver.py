@@ -4,6 +4,18 @@ import sqlite3
 import logging
 from Processes import Database as db
 from Processes import Serverinfo as si
+import multiprocessing.dummy as multiprocessing
+
+def job(s, data, addr):
+    queryData = dns.message.from_wire(data)
+    logging.info(f'[+] Received query from {addr[0]} for: {queryData.question[0].to_text()}')
+    # Create a response
+    response = dns.message.make_response(queryData)
+    # Add a response to the response
+    response.answer = db.getAnswer(queryData)
+    # Send the response to the client
+    s.sendto(response.to_wire(), addr)
+
 def run():
     # Set up logging
     logging.basicConfig(filename = 'Logs/DNSServer.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -19,11 +31,6 @@ def run():
     while True:
         # Receive data from the client
         data, addr = s.recvfrom(512)
-        queryData = dns.message.from_wire(data)
-        logging.info(f'[+] Received query from {addr[0]} for: {queryData.question[0].to_text()}')
-        # Create a response
-        response = dns.message.make_response(queryData)
-        # Add a response to the response
-        response.answer = db.getAnswer(queryData)
-        # Send the response to the client
-        s.sendto(response.to_wire(), addr)
+        # Start a new thread to handle the request
+        p = multiprocessing.Process(target=job, args=(s, data, addr))
+        p.start()
