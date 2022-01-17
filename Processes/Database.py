@@ -29,9 +29,9 @@ def getRemoteAnswer(queryData):
         'port': 53
     }
     for backupServerName in si.info['Dnsserver']['Backupservers'].keys():
-        if (backupServer[backupServerName]['enabled']):
-            useServer['ip'] = backupServer[backupServerName]['ip']
-            useServer['port'] = backupServer[backupServerName]['port']
+        if (si.info['Dnsserver']['Backupservers'][backupServerName]['enabled']):
+            useServer['ip'] = si.info['Dnsserver']['Backupservers'][backupServerName]['ip']
+            useServer['port'] = si.info['Dnsserver']['Backupservers'][backupServerName]['port']
             break
     forwardedResponse = dns.query.udp(queryData, useServer['ip'], useServer['port'])
     print(f"[+] Forwarded query to {useServer['ip']}:{useServer['port']}")
