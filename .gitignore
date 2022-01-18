@@ -7,3 +7,6 @@ Processes/__pycache__/ServerInfo.cpython-310.pyc
 Processes/__pycache__/Webserver.cpython-310.pyc
 Logs/DNSServer.log
 Logs/Webserver.log
+.gitpod.yml
+Processes/__pycache__/Database.cpython-38.pyc
+Pipfile
