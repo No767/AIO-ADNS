@@ -1,0 +1,9 @@
+dig cnn.com 127.0.0.1
+dig google.com 127.0.0.1
+dig bing.com 127.0.0.1
+dig reddit.com 127.0.0.1
+dig amazon.com 127.0.0.1
+dig acer.com 127.0.0.1
+dig instagram.com 127.0.0.1
+dig facebook.com 127.0.0.1
+dig lenovo.com 127.0.0.1
