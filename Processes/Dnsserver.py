@@ -7,6 +7,15 @@ from Processes import Serverinfo as si
 import multiprocessing.dummy as multiprocessing
 
 def job(s, data, addr):
+    '''
+    It takes a socket, a data packet, and an address as arguments. It then parses the data packet into a
+    dns.message object. It then logs the query and then sends the response to the client.
+    
+    :param s: The socket
+    :param data: The data received from the client
+    :param addr: The address of the client
+    :return: None
+    '''
     queryData = dns.message.from_wire(data)
     logging.info(f'[+] Received query from {addr[0]} for: {queryData.question[0].to_text()}')
     # Create a response
@@ -17,6 +26,12 @@ def job(s, data, addr):
     s.sendto(response.to_wire(), addr)
 
 def run():
+    '''
+    Create a socket, bind it to the port, and wait for data.
+    
+    
+    :return: None
+    '''
     # Set up logging
     logging.basicConfig(filename = 'Logs/Server.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
     logging.debug('[+] Starting DNS server')

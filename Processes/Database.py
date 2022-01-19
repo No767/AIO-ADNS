@@ -4,6 +4,13 @@ import logging
 import Processes.Serverinfo as si
 
 def initdb():
+    '''
+    Create a database called dns.db if it doesn't exist, and create a table called domains if it doesn't
+    exist.
+    
+    
+    :return: None
+    '''
     conn = sqlite3.connect('dns.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS domains (
@@ -14,6 +21,14 @@ def initdb():
     conn.close()
 
 def getLocalAnswer(queryData):
+    '''
+    It takes a queryData object as an argument, and then searches the database for the domain name in
+    the question section of the queryData object. If it finds a match, it returns the answer section of
+    the DNS message that is stored in the database.
+    
+    :param queryData: The DNS query data
+    :return: The answer to the question
+    '''
     try:
         conn = sqlite3.connect('dns.db')
         c = conn.cursor()
@@ -26,6 +41,12 @@ def getLocalAnswer(queryData):
     return dns.message.from_text(answer).answer
 
 def getRemoteAnswer(queryData):
+    '''
+    It forwards the query to the remote nameserver and returns the answer.
+    
+    :param queryData: The query data that was sent to the remote nameserver
+    :return: The answer from the remote nameserver
+    '''
     useServer = {
         'ip': '0.0.0.0',
         'port': 53
@@ -42,6 +63,13 @@ def getRemoteAnswer(queryData):
     return forwardedResponse.answer
 
 def getAnswer(queryData):
+    '''
+    If the local answer is not None, return it. Otherwise, if the remote answer is not None, return it.
+    Otherwise, return None.
+    
+    :param queryData: The query data to be sent to the server
+    :return: A list of dictionaries
+    '''
     localAnswer = getLocalAnswer(queryData)
     if localAnswer is None:
         remoteAnswer = getRemoteAnswer(queryData)
@@ -54,6 +82,13 @@ def getAnswer(queryData):
         return localAnswer
 
 def addAnswer(domain, answer):
+    '''
+    It adds a domain and its IP address to the database.
+    
+    :param domain: The domain name that we're looking up
+    :param answer: The answer to the question
+    :return: None
+    '''
     conn = sqlite3.connect('dns.db')
     c = conn.cursor()
     c.execute("INSERT INTO domains VALUES (?, ?)", (domain, answer))

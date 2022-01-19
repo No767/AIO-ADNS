@@ -7,9 +7,21 @@ logging.basicConfig(filename = 'Logs/Server.log', level=logging.DEBUG, format='%
 
 @app.route('/')
 def index():
+    '''
+    This function is called when the user goes to the root of our website.
+
+
+    :return: The index.html file.
+    '''
     return flask.render_template('index.html')
 
 def run():
+    '''
+    It starts the web server.
+    
+    
+    :return: None
+    '''
     # set up logging
     logging.debug('[+] Starting Web server')
     print('[+] Starting Web server')
