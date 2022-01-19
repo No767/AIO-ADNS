@@ -3,8 +3,6 @@ import dns
 import logging
 import Processes.Serverinfo as si
 
-logging.basicConfig(filename = 'Logs/Dnsserver.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-
 def initdb():
     conn = sqlite3.connect('dns.db')
     c = conn.cursor()

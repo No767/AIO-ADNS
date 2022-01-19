@@ -1,10 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ADNS</title>
-</head>
-<body>
-    <h1>ADNS</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>🚀ADNS</title>
+    </head>
+    <body>
+        <button id="navshow" onclick="openNav()">✨</button>
+        <div id="nav" class="nav">
+            <ul>
+                <li><h1 id="logo">🚀ADNS</h1></li>
+                <li><a href="index"><button>Home</button></a></li>
+                <li><a href="block"><button>Block</button></a></li>
+                <li><a href="route"><button>Route</button></a></li>
+                <li><a href="toggleONOFF"><button>Turn Off/On</button></a></li>
+            </ul>
+        </div>
+        <script>
+            function openNav() {
+                if (document.getElementById("nav").style.width == "200px") {
+                    document.getElementById("nav").style.width = "0px";
+                    document.getElementById("navshow").style.left = "0px";
+                } else {
+                    document.getElementById("nav").style.width = "200px";
+                    document.getElementById("navshow").style.left = "200px";
+                }
+            }
+        </script>
+        <div id="content">
+            <h1>🚀ADNS</h1>
+            <h2>Welcome to the ADNS Control Center</h2>
+            <p>This is the ADNS Control Center. Here you can control the ADNS system.</p>
+            <p>You can use the navigation bar (marked by ✨) to navigate through the different pages.</p>
+            <br>
+            <h2>Logs</h2>
+            <p>DNS logs are stored in <code>./Logs/DNSServer.log</code></p>
+        </div>
+    </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family:sans-serif;
+        }
+        #logo {
+            font-size: 36px;
+            color: white;
+            width: 200px;
+        }
+        #navshow {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+            padding: 10px;
+            transition: 0.5s;
+            background-color: #1c2235;
+            border: none;
+            border-radius: 0 10px 10px 0;
+        }
+        #content {
+            margin-top: 50px;
+            margin-left: 200px;
+            margin-right: 200px;
+            margin-bottom: 50px;
+            padding: 10px;
+            background-color: #1c2235;
+            color: white;
+            border-radius: 10px;
+        }
+        .nav {
+            width: 0px;
+            height: 100%;
+            position: fixed;
+            background-color: #1c2235;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+        .nav ul {
+            text-align: center;
+            list-style-type: none;
+            padding: 0;
+        }
+        .nav ul li button {
+            color: white;
+            background-color: transparent;
+            border: none;
+            width: 200px;
+            transition: 0.5s;
+            padding: 10px;
+        }
+        .nav ul li a button:hover {
+            color: black;
+            background-color: white;
+        }
+    </style>
 </html>

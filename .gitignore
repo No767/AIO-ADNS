@@ -14,3 +14,4 @@ Logs/Dnsserver.log
 Processes/__pycache__/Dnsserver.cpython-38.pyc
 Processes/__pycache__/Serverinfo.cpython-38.pyc
 Processes/__pycache__/Webserver.cpython-38.pyc
+Logs/Server.log

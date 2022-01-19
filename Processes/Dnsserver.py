@@ -18,7 +18,7 @@ def job(s, data, addr):
 
 def run():
     # Set up logging
-    logging.basicConfig(filename = 'Logs/DNSServer.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename = 'Logs/Server.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
     logging.debug('[+] Starting DNS server')
     print('[+] Starting DNS server')
     # Create a socket
