@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
         <title>🚀ADNS</title>
     </head>
     <body>
@@ -16,17 +17,7 @@
                 <li><a href="toggleONOFF"><button>Turn Off/On</button></a></li>
             </ul>
         </div>
-        <script>
-            function openNav() {
-                if (document.getElementById("nav").style.width == "200px") {
-                    document.getElementById("nav").style.width = "0px";
-                    document.getElementById("navshow").style.left = "0px";
-                } else {
-                    document.getElementById("nav").style.width = "200px";
-                    document.getElementById("navshow").style.left = "200px";
-                }
-            }
-        </script>
+        <script src="nav.js"></script>
         <div id="content">
             <h1>🚀ADNS</h1>
             <h2>Welcome to the ADNS Control Center</h2>
@@ -37,64 +28,4 @@
             <p>DNS logs are stored in <code>./Logs/DNSServer.log</code></p>
         </div>
     </body>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: Helvetica;
-        }
-        #logo {
-            font-size: 36px;
-            color: #e8edff;
-            width: 200px;
-        }
-        #navshow {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            z-index: 1;
-            padding: 10px;
-            transition: 0.5s;
-            background-color: #1c2235;
-            border: none;
-            border-radius: 0 10px 10px 0;
-            box-shadow: 1px 0px 10px #1c2235;
-        }
-        #content {
-            margin: 50px;
-            color: #1c2235;
-            border-radius: 10px;
-        }
-        .nav {
-            width: 0px;
-            height: 100%;
-            position: fixed;
-            background-color: #1c2235;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            overflow-x: hidden;
-            transition: 0.5s;
-            box-shadow: 1px 0px 10px #1c2235;
-        }
-        .nav ul {
-            text-align: center;
-            list-style-type: none;
-            padding: 0;
-        }
-        .nav ul li button {
-            color: #e8edff;
-            background-color: transparent;
-            border: none;
-            width: 200px;
-            box-shadow: 0px 0px 0px #e8edff;
-            transition: 0.5s;
-            padding: 10px;
-        }
-        .nav ul li a button:hover {
-            color: black;
-            background-color: #e8edff;
-            box-shadow: 0px 0px 2px #e8edff;
-        }
-    </style>
 </html>
