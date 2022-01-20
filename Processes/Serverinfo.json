@@ -1,7 +1,7 @@
 {
     "Dnsserver": {
         "ip": "127.0.0.1",
-        "port": 10101010101,
+        "port": 546372,
         "Backupservers": {
             "Google": {
                 "enabled": false,
@@ -31,6 +31,6 @@
     },
     "Webserver": {
         "ip": "127.0.0.1",
-        "port": 1010101010
+        "port": 546372
     }
 }
