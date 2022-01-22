@@ -9,12 +9,16 @@ body {
 }
 
 #logo {
+    position: absolute;
     font-size: 36px;
     color: #bbbfc4;
-    width: 200px;
+    width: 100%;
+    text-align: center;
+    top: 40%;
 }
 
 #navshow {
+    top: 0;
     z-index: 1;
     color: #bbbfc4;
     position: absolute;
@@ -26,36 +30,41 @@ body {
 }
 
 .nav {
-    width: 100%;
+    top: 0;
+    width: 200px;
     height: 100%;
-    position: fixed;
+    position: absolute;
+    background: #3c3c3fc0;
     backdrop-filter: blur(2px);
     z-index: 1;
     transition: 0.8s;
 }
 
 .nav ul {
-    margin-top: 30em;
-    text-align: center;
-    align-items: center;
-    overflow: hidden;
+    margin-top: 50px;
 }
 
-.nav ul li {
-    display: inline-block;
+.nav ul li{
+    list-style: none;
 }
 
 .nav ul li a button{
-    margin: 10px;
+    width: 100%;
+    padding: 10px 0 10px 0px;
     border: none;
     background-color: transparent;
     color: #bbbfc4;
+    transition: 0.8s;
+}
+
+.nav ul li a button:hover{
+    color:rgb(39, 39, 39);
+    background-color: #bbbfc4;
 }
 
 .card {
     color: #bbbfc4;
     background-color: #4e4e50;
-    border-radius: 10px;
-    margin: 10px 10px 50px 50px;
     padding: 10px;
+    margin: 50px;
 }
