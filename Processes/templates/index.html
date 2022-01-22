@@ -6,26 +6,19 @@
         <link rel="stylesheet" href="style.css">
         <title>🚀ADNS</title>
     </head>
-    <body>
-        <button id="navshow" onclick="openNav()">✨</button>
+    <body onload="openNav()">
+        <button id="navshow" onclick="openNav()">=</button>
         <div id="nav" class="nav">
             <ul>
-                <li><h1 id="logo">🚀ADNS</h1></li>
                 <li><a href="index"><button>Home</button></a></li>
                 <li><a href="block"><button>Block</button></a></li>
                 <li><a href="route"><button>Route</button></a></li>
                 <li><a href="toggleONOFF"><button>Turn Off/On</button></a></li>
             </ul>
         </div>
-        <script src="nav.js"></script>
-        <div id="content">
-            <h1>🚀ADNS</h1>
-            <h2>Welcome to the ADNS Control Center</h2>
-            <p>This is the ADNS Control Center. Here you can control the ADNS system.</p>
-            <p>You can use the navigation bar (marked by ✨) to navigate through the different pages.</p>
-            <br>
-            <h2>Logs</h2>
-            <p>DNS logs are stored in <code>./Logs/DNSServer.log</code></p>
+        <div class="card" id="content">
+            <h3>Welcome to the ADNS Control Center</h3>
         </div>
     </body>
+    <script type="text/javascript" src="js/nav.js"></script>
 </html>

@@ -3,56 +3,59 @@
     padding: 0;
     font-family: Helvetica;
 }
+
+body {
+    background: rgb(39, 39, 39);
+}
+
 #logo {
     font-size: 36px;
-    color: #e8edff;
+    color: #bbbfc4;
     width: 200px;
 }
+
 #navshow {
-    position: fixed;
-    top: 0px;
-    left: 0px;
     z-index: 1;
-    padding: 10px;
-    transition: 0.5s;
-    background-color: #1c2235;
+    color: #bbbfc4;
+    position: absolute;
+    margin-left: 0px;
+    z-index: 2;
+    transition: 0.8s;
+    backdrop-filter: blur(2px);
     border: none;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 1px 0px 10px #1c2235;
 }
-#content {
-    margin: 50px;
-    color: #1c2235;
-    border-radius: 10px;
-}
+
 .nav {
-    width: 0px;
+    width: 100%;
     height: 100%;
     position: fixed;
-    background-color: #1c2235;
+    backdrop-filter: blur(2px);
     z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    transition: 0.5s;
-    box-shadow: 1px 0px 10px #1c2235;
+    transition: 0.8s;
 }
+
 .nav ul {
     text-align: center;
-    list-style-type: none;
-    padding: 0;
+    align-items: center;
+    margin-top: 50%;
+    overflow: hidden;
 }
-.nav ul li button {
-    color: #e8edff;
-    background-color: transparent;
+
+.nav ul li {
+    display: inline-block;
+}
+
+.nav ul li a button{
+    margin: 10px;
     border: none;
-    width: 200px;
-    box-shadow: 0px 0px 0px #e8edff;
-    transition: 0.5s;
-    padding: 10px;
+    background-color: transparent;
+    color: #bbbfc4;
 }
-.nav ul li a button:hover {
-    color: black;
-    background-color: #e8edff;
-    box-shadow: 0px 0px 2px #e8edff;
+
+.card {
+    color: #bbbfc4;
+    background-color: #4e4e50;
+    border-radius: 10px;
+    margin: 10px 10px 50px 50px;
+    padding: 10px;
 }
