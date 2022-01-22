@@ -35,9 +35,9 @@ body {
 }
 
 .nav ul {
+    margin-top: 30em;
     text-align: center;
     align-items: center;
-    margin-top: 50%;
     overflow: hidden;
 }
 
