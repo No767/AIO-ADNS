@@ -1,0 +1,1 @@
+This is to ensure that the folder is pushed to git and that errors won't form when attempting to create files to store the logs in as a result of missing directories.
