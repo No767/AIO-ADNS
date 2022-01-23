@@ -1,8 +1,8 @@
-# ADNS
+# AIO-ADNS
 
 ![alt text](Processes/templates/assets/home.png)
 
-A DNS for home users
+A Fast, Secure, and Scalable DNS Server for home users
 
 ## Features
 
@@ -14,3 +14,4 @@ A DNS for home users
     * Ad Blocking
     * Host Blocking
     * Family friendly content restrictions
+    * Full Docker Support

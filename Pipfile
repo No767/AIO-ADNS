@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 dnspython = "*"
 Flask = "*"
+sqlalchemy = "*"
+orjson = "*"
+sanic = "*"
+aiosqlite = "*"
 
 [dev-packages]
 

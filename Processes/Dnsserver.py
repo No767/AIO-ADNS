@@ -1,6 +1,5 @@
 import dns, dns.message, dns.query
 import socket
-import sqlite3
 import logging
 from Processes import Database as db
 from Processes import Serverinfo as si

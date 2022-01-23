@@ -2,6 +2,9 @@ import sqlite3
 import dns
 import logging
 import Processes.Serverinfo as si
+from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy import (BigInteger, Column, Integer, MetaData, Sequence, Table,
+                        func, select)
 
 def initdb():
     '''
@@ -11,6 +14,7 @@ def initdb():
     
     :return: None
     '''
+    
     conn = sqlite3.connect('dns.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS domains (
