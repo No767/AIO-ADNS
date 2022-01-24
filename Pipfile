@@ -12,6 +12,11 @@ sanic = "*"
 aiosqlite = "*"
 
 [dev-packages]
+black = "*"
+autopep8 = "*"
+isort = "*"
+autoflake = "*"
+pyflakes = "*"
 
 [requires]
 python_version = "3.10"
