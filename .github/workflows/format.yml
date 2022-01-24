@@ -1,0 +1,51 @@
+name: Format
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Format:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Set up Python 3.10.2
+      id: setup-python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.2
+    - name: Upgrade Pip and Install Pipenv
+      run: |
+        pip install --upgrade pip pipenv
+    - name: Cache Pipenv
+      id: cache-pipenv
+      uses: actions/cache@v2.1.7
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-v2-${{ hashFiles('**/Pipfile.lock') }}
+    - name: Install Pipenv Dependencies
+      if: steps.cache-pipenv.outputs.cache-hit != 'true'
+      run: |
+        pipenv install --dev
+    - name: Format with Black
+      run: |
+        pipenv run black Processes
+    - name: Format with Isort
+      run: |
+        pipenv run isort Processes
+    - name: Format with AutoFlake
+      run: |
+        pipenv run autoflake --in-place --remove-unused-variables --remove-all-unused-imports --recursive Processes
+    - name: Format with AutoPEP8
+      run: |
+        pipenv run autopep8 -r --in-place Processes
+    - name: Commit And Push All Changes
+      uses: EndBug/add-and-commit@v8
+      with:
+        default_author: github_actions
+        message: 'Format All Files'
+        add: 'Processes/ --force --all'
+        push: true
+        branch: dev
+        pull: '--no-rebase'
