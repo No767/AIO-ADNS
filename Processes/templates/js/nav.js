@@ -19,3 +19,16 @@ function openNav() {
         document.getElementById("navshow").textContent = "x";
     }
 }
+
+function render_nav() {
+    document.getElementById('navContainer').innerHTML = `<button id="navshow" onclick="openNav()">=</button>
+    <div id="nav" class="nav">
+        <ul>
+            <li><a href="/"><button>Home</button></a></li>
+            <li><a href="/block"><button>Block</button></a></li>
+            <li><a href="/route"><button>Route</button></a></li>
+            <li><a href="/toggleONOFF"><button>Toggle</button></a></li>
+        </ul>
+    </div>`;
+    openNav();
+}
