@@ -21,3 +21,13 @@ AIO-ADNS is a fork of ADNS that is designed to be faster and more secure than AD
     * Host Blocking
     * Family friendly content restrictions
     * Full Docker Support
+
+# Tech Used
+
+![image](https://img.shields.io/badge/Sanic-07405E?style=for-the-badge&logo=sanic&logoColor=white)
+![image](https://img.shields.io/badge/Uvloop-07405E?style=for-the-badge&logo=uvloop&logoColor=white)
+![image](https://img.shields.io/badge/Ujson-07405E?style=for-the-badge&logo=ujson&logoColor=white)
+![image](https://img.shields.io/badge/SQLite3-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![image](https://img.shields.io/badge/React-07405E?style=for-the-badge&logo=react&logoColor=white)
+![image](https://img.shields.io/badge/Python-07405E?style=for-the-badge&logo=python&logoColor=white)
+
