@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import create_async_engine
 import Processes.Serverinfo as si
 
 
-def initdb():
+async def initdb():
     """
     Create a database called dns.db if it doesn't exist, and create a table called domains if it doesn't
     exist.
@@ -27,7 +27,7 @@ def initdb():
         await conn.run_sync(meta.create_all)
 
 
-def getLocalAnswer(queryData):
+async def getLocalAnswer(queryData):
     """
     It takes a queryData object as an argument, and then searches the database for the domain name in
     the question section of the queryData object. If it finds a match, it returns the answer section of
@@ -57,7 +57,7 @@ def getLocalAnswer(queryData):
     return dns.message.from_text(answer).answer
 
 
-def getRemoteAnswer(queryData):
+async def getRemoteAnswer(queryData):
     """
     It forwards the query to the remote nameserver and returns the answer.
 
@@ -84,7 +84,7 @@ def getRemoteAnswer(queryData):
     return forwardedResponse.answer
 
 
-def getAnswer(queryData):
+async def getAnswer(queryData):
     """
     If the local answer is not None, return it. Otherwise, if the remote answer is not None, return it.
     Otherwise, return None.
@@ -104,7 +104,7 @@ def getAnswer(queryData):
         return localAnswer
 
 
-def addAnswer(domain, answer):
+async def addAnswer(domain, answer):
     """
     It adds a domain and its IP address to the database.
 
