@@ -1,6 +1,7 @@
 import logging
 
 from sanic import Sanic, response
+
 from Processes import Serverinfo
 
 app = Sanic("AIO-ADNS")
@@ -15,6 +16,7 @@ logging.basicConfig(
 @app.route("/")
 async def index():
     return await response.file("./templates/index.html")
+
 
 async def run():
     logging.debug("[+] Starting Web server")
