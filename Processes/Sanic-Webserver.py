@@ -1,7 +1,7 @@
-from Processes import Serverinfo
 import logging
-from sanic import response
-from sanic import Sanic
+
+from sanic import Sanic, response
+
 
 app = Sanic("AIO-ADNS")
 
@@ -11,7 +11,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 
+
 @app.route("/")
 async def index():
     return response.file("/templates / index.html")
-
