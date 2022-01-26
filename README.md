@@ -6,6 +6,10 @@
 
 A Fast, Secure, and Scalable DNS Server for home users
 
+# Info
+
+AIO-ADNS is a fork of ADNS that is designed to be faster and more secure than ADNS. Instead of having a control panel made from pure HTML and some JS, AIO-ADNS uses React.js to leverage many core components and a cleaner UI.
+
 ## Features
 
     * Caches DNS queries to reduce latencies on repeat visits
