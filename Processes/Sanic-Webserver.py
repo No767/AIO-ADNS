@@ -1,7 +1,7 @@
-from Processes import Serverinfo
 import logging
-from sanic import response
-from sanic import Sanic
+
+from sanic import Sanic, response
+from Processes import Serverinfo
 
 app = Sanic("AIO-ADNS")
 
@@ -10,6 +10,7 @@ logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
+
 
 @app.route("/")
 async def index():
